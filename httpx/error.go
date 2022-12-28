@@ -33,9 +33,13 @@ func NewBadRequestError(text string) Error {
 	return NewError(text, http.StatusBadRequest)
 }
 
+func NewUnauthorizedError(text string) Error {
+	return NewError(text, http.StatusUnauthorized)
+}
+
 // 定义常用 HTTP 错误
 var (
 	ErrBadRequest   = NewBadRequestError("Invalid Request")
-	ErrUnauthorized = NewError(http.StatusText(http.StatusUnauthorized), http.StatusUnauthorized)
+	ErrUnauthorized = NewUnauthorizedError(http.StatusText(http.StatusUnauthorized))
 	ErrNotFound     = NewError(http.StatusText(http.StatusNotFound), http.StatusNotFound)
 )
