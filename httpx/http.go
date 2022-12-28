@@ -19,6 +19,10 @@ func Uses(ms ...MiddlewareFunc) http.HandlerFunc {
 					http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
 				}
 				return
+			} else {
+				if w.Header().Values("Location") != nil {
+					return
+				}
 			}
 		}
 	}
